@@ -1,0 +1,33 @@
+/* Full-width navbar */
+nav {
+    display: flex;
+    justify-content: center;   /* Center the links horizontally */
+    align-items: center;       /* Center the links vertically */
+    background-color: #333;    /* Dark background for the navbar */
+    padding: 10px 20px;        /* Padding around the navbar */
+    width: 100%;               /* Ensure the navbar spans the full width */
+    position: fixed;           /* Fix the navbar at the top */
+    top: 0;                    /* Align it to the top of the page */
+    left: 0;                   /* Align to the left of the page */
+    z-index: 1000;             /* Ensure it stays on top of other content */
+  }
+  
+  /* Style for the links */
+  nav a {
+    color: white;              /* White text color for the links */
+    text-decoration: none;     /* Remove underline */
+    font-size: 18px;           /* Font size for the links */
+    margin-right: 20px;        /* Space between the links */
+    transition: color 0.3s ease; /* Smooth transition effect */
+  }
+  
+  /* Remove margin from the last link */
+  nav a:last-child {
+    margin-right: 0; /* No margin on the last link */
+  }
+  
+  /* Hover effect for the links */
+  nav a:hover {
+    color: #4CAF50;            /* Change text color on hover (green) */
+  }
+  
