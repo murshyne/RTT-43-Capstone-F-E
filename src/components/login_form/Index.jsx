@@ -81,7 +81,7 @@ const LoginForm = ({ setNewUser }) => {
               value={formData.password}
               onClick={() => {
                 setPasswordVisible(true);
-                setTimeout(() => setPasswordVisible(false), 1000); // Hide after 1 seconds
+                setTimeout(() => setPasswordVisible(false), 1000); // Reveal and hide after 1 second
               }}
             />
           </div>
