@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "../../contexts/auth/auth_context";
-import './index.module.css';
+import './index.module.css'; // Make sure you import the CSS file
+
+
 
 const LoginForm = ({ setNewUser }) => {
   const nav = useNavigate();
@@ -11,6 +13,7 @@ const LoginForm = ({ setNewUser }) => {
     password: '',
   });
   const [errors, setErrors] = useState([]);
+  const [passwordVisible, setPasswordVisible] = useState(false);
 
   const handleClick = () => {
     setNewUser(true);
@@ -23,18 +26,15 @@ const LoginForm = ({ setNewUser }) => {
     });
   }
 
+  const togglePasswordVisibility = () => setPasswordVisible(!passwordVisible);
+
   async function handleSubmit(e) {
     e.preventDefault();
-
     try {
       await login(formData);
-      nav('/dashboard');
+      nav('/dashboard');  
     } catch (err) {
-      let newArr = err.response.data.errors.map((e) => {
-        return <p>{e.msg}</p>;
-      });
-
-      setErrors(newArr);
+      setErrors(err.response?.data?.errors || []);
       setTimeout(() => {
         setErrors([]);
       }, 3000);
@@ -50,7 +50,6 @@ const LoginForm = ({ setNewUser }) => {
           <p>Please log in to view your profile or connect with your trainer.</p>
         </div>
       </div>
-
       <div className="right-side">
         <div className="forms">
           <h2>Login</h2>
@@ -67,17 +66,23 @@ const LoginForm = ({ setNewUser }) => {
               placeholder='Email'
             />
             <label htmlFor='password'>Password: </label>
-            <input
-              onChange={handleChange}
-              type='password'
-              id='password'
-              name='password'
-              placeholder='Password'
-              minLength='8'
-            />
+            <div className="password-container">
+              <input
+                onChange={handleChange}
+                type={passwordVisible ? 'text' : 'password'}
+                id='password'
+                name='password'
+                placeholder='Password'
+                minLength='8'
+              />
+              <i 
+                className={`fa ${passwordVisible ? 'fa-eye-slash' : 'fa-eye'}`}
+                onClick={togglePasswordVisibility}
+              />
+            </div>
             <button type='submit'>Log In</button>
           </form>
-          {errors.length > 0 ? errors : null}
+          {errors.length > 0 && <div className="error-message">{errors}</div>}
         </div>
       </div>
     </div>

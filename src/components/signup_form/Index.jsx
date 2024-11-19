@@ -1,7 +1,7 @@
-import React from 'react';
-import { useState } from "react";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from "../../contexts/auth/auth_context";
-// import { useNavigate } from 'react-router-dom';
+// import './index.module.css';
 
 const SignUp = ({ setNewUser }) => {
   const { signUp } = useAuth();
@@ -13,6 +13,7 @@ const SignUp = ({ setNewUser }) => {
     password: '',
     password2: '',
   });
+  const [errors, setErrors] = useState([]);
 
   const handleClick = () => {
     setNewUser(false);
@@ -27,57 +28,70 @@ const SignUp = ({ setNewUser }) => {
 
   async function handleSubmit(e) {
     e.preventDefault();
-
     if (formData.password !== formData.password2) {
-      console.log('Passwords do not match');
+      setErrors(["Passwords do not match"]);
     } else {
-      await signUp(formData);
-      nav('/dashboard')
+      try {
+        await signUp(formData);
+        nav('/dashboard');
+      } catch (err) {
+        setErrors(err.response?.data?.errors || []);
+      }
     }
   }
 
   return (
-    <div className='forms'>
-      <h2>SignUp</h2>
-      <form onSubmit={handleSubmit} autoComplete='off'>
-        <label htmlFor='name1'>Name: </label>
+    <div className="forms">
+      <h2>Sign Up</h2>
+      <form onSubmit={handleSubmit} autoComplete="off">
+        <label htmlFor="fname">First Name: </label>
         <input
           onChange={handleChange}
-          type='text'
-          id='name1'
-          name='name'
-          placeholder='First and Last Name'
+          type="text"
+          id="fname"
+          name="fname"
+          placeholder="First Name"
         />
-        <label htmlFor='email1'>Email: </label>
+        <label htmlFor="lname">Last Name: </label>
         <input
           onChange={handleChange}
-          type='email'
-          id='email1'
-          name='email'
-          placeholder='Email'
+          type="text"
+          id="lname"
+          name="lname"
+          placeholder="Last Name"
         />
-        <label htmlFor='password1'>Password: </label>
+        <label htmlFor="email">Email: </label>
         <input
           onChange={handleChange}
-          type='password'
-          id='password1'
-          name='password'
-          placeholder='Password'
-          minLength='6'
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Email"
         />
+        <label htmlFor="password">Password: </label>
         <input
           onChange={handleChange}
-          type='password'
-          id='password2'
-          name='password2'
-          placeholder='Confirm Password'
-          minLength='6'
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Password"
+          minLength="6"
         />
-        <button type='submit'>Sign In</button>
+        <label htmlFor="password2">Confirm Password: </label>
+        <input
+          onChange={handleChange}
+          type="password"
+          id="password2"
+          name="password2"
+          placeholder="Confirm Password"
+          minLength="6"
+        />
+        <button type="submit">Sign Up</button>
       </form>
       <p>
-        Already have an account? <button onClick={handleClick}>Sign In</button>
+        Already have an account? <button onClick={handleClick}>Log In</button>
       </p>
+      {errors.length > 0 && <div className="error-message">{errors}</div>}
     </div>
   );
 };
