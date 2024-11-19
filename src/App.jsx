@@ -1,16 +1,28 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
-import AuthPage from './pages/auth/Index';  // The auth page for Login/Sign Up
 import Navbar from './components/navbar/Index';
-import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes';
+import Home from './components/home_page/index'; // Home Page component
+import AuthPage from './pages/auth/Index'; // Auth Page for Login/Sign Up
+import SignUp from './components/signup_form/Index'; // SignUp form component
+import LoginForm from './components/login_form/Index'; // Login form component
+import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes'; // Protected routes
 
 function App() {
   return (
     <>
       <Navbar />
       <Routes>
-        <Route path='/auth' element={<AuthPage />} />
+        {/* Home Route */}
+        <Route path="/" element={<Home />} />
+        
+        {/* Public Routes */}
+        <Route path="/auth" element={<AuthPage />} />
+        <Route path="/auth/signup" element={<SignUp />} />
+        <Route path="/auth/login" element={<LoginForm />} />
+        
+        {/* Protected Routes */}
         <Route element={<ProtectedRoutes />}>
+          {/* <Route path="/dashboard" element={<Dashboard />} />  Dashboard page */}
         </Route>
       </Routes>
     </>

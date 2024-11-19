@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from "../../contexts/auth/auth_context";
-// import './index.module.css';
 
 const SignUp = ({ setNewUser }) => {
   const { signUp } = useAuth();
   const nav = useNavigate();
+
   const [formData, setFormData] = useState({
     fname: '',
     lname: '',
@@ -19,14 +19,14 @@ const SignUp = ({ setNewUser }) => {
     setNewUser(false);
   };
 
-  function handleChange(e) {
+  const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
-  }
+  };
 
-  async function handleSubmit(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.password !== formData.password2) {
       setErrors(["Passwords do not match"]);
@@ -38,7 +38,7 @@ const SignUp = ({ setNewUser }) => {
         setErrors(err.response?.data?.errors || []);
       }
     }
-  }
+  };
 
   return (
     <div className="forms">
