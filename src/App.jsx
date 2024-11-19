@@ -1,11 +1,11 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/navbar/Index';
-import Home from './components/home_page/index'; // Home Page component
-import AuthPage from './pages/auth/Index'; // Auth Page for Login/Sign Up
-import SignUp from './components/signup_form/Index'; // SignUp form component
-import LoginForm from './components/login_form/Index'; // Login form component
-import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes'; // Protected routes
+import Home from './components/home_page/index'; 
+import AuthPage from './pages/auth/Index'; 
+import SignUp from './components/signup_form/Index'; 
+import LoginForm from './components/login_form/Index';
+import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes';
 
 function App() {
   return (
