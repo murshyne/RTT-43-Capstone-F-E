@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from "../../contexts/auth/auth_context";
 import './index.module.css'; 
 
+
 const SignUp = ({ setNewUser }) => {
   const { signUp } = useAuth();
   const nav = useNavigate();
@@ -19,7 +20,7 @@ const SignUp = ({ setNewUser }) => {
   const [password2Visible, setPassword2Visible] = useState(false);
 
   const handleClick = () => {
-    setNewUser(false);
+    nav('/auth/login');  // This will navigate to the LoginForm route
   };
 
   const handleChange = (e) => {
@@ -86,7 +87,7 @@ const SignUp = ({ setNewUser }) => {
             value={formData.password}
             onClick={() => {
               setPasswordVisible(true);
-              setTimeout(() => setPasswordVisible(false), 1000); // Hide after 2 seconds
+              setTimeout(() => setPasswordVisible(false), 2000); // Hide after 2 seconds
             }}
           />
         </div>
@@ -105,7 +106,7 @@ const SignUp = ({ setNewUser }) => {
             value={formData.password2}
             onClick={() => {
               setPassword2Visible(true);
-              setTimeout(() => setPassword2Visible(false), 1000); // Hide after 2 seconds
+              setTimeout(() => setPassword2Visible(false), 2000); // Hide after 2 seconds
             }}
           />
         </div>

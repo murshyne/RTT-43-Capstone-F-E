@@ -16,7 +16,7 @@ const LoginForm = ({ setNewUser }) => {
 
   // Handle new user registration flow
   const handleClick = () => {
-    setNewUser(true);
+    nav('/auth/signup'); // Navigate to the sign-up page
   };
 
   // Handle form input change
