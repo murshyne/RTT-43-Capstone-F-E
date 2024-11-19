@@ -1,0 +1,30 @@
+.password-container {
+    position: relative;
+    display: flex;
+    width: 100%;
+  }
+  
+  .password-input {
+    width: 100%;
+    padding: 10px;
+    padding-right: 40px; /* Space for the eye icon */
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .password-container::after {
+    content: "\1F441"; /* Unicode for eye icon */
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    cursor: pointer;
+    color: #cfcbcb;
+  }
+  
+  .password-container:hover::after {
+    color: #007bff;
+  }
+  
