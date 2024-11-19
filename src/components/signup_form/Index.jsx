@@ -87,7 +87,7 @@ const SignUp = ({ setNewUser }) => {
             value={formData.password}
             onClick={() => {
               setPasswordVisible(true);
-              setTimeout(() => setPasswordVisible(false), 2000); // Hide after 2 seconds
+              setTimeout(() => setPasswordVisible,(false), 1000); // Reveal and hide after 1 second
             }}
           />
         </div>
@@ -106,7 +106,7 @@ const SignUp = ({ setNewUser }) => {
             value={formData.password2}
             onClick={() => {
               setPassword2Visible(true);
-              setTimeout(() => setPassword2Visible(false), 2000); // Hide after 2 seconds
+              setTimeout(() => setPassword2Visible(false), 1000); // Reveal and hide after 1 second
             }}
           />
         </div>
